@@ -4,7 +4,7 @@ import parseMarkdown from "./parser";
 export default function parseOrderedList(input: string | ReactNode, keyPrefix = ""): (string | ReactNode)[] {
   if (typeof input !== "string") return [input];
 
-  const regex = /^(\d+)\.\s+(.+?)(?=\n\d+\.\s|\n\n|$)/gms;
+  const regex = /^(\d+)\.\s+(.+?)(?=\n\d+\.\s|\n\n|$)/gm;
   const parts: (string | ReactNode)[] = [];
   let lastIndex = 0;
   let matchIndex = 0;
@@ -29,7 +29,11 @@ export default function parseOrderedList(input: string | ReactNode, keyPrefix = 
     });
     
     listItems.push(
-      <li key={`${keyPrefix}-ol-li-${matchIndex}`} className="list-decimal ml-4 pl-1">
+      <li 
+        key={`${keyPrefix}-li-${matchIndex}`} 
+        value={parseInt(num)}
+        className="list-decimal ml-4 pl-1"
+      >
         {parsedContent}
       </li>
     );

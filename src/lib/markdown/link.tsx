@@ -14,7 +14,6 @@ export default function parseLink(input: string | ReactNode, keyPrefix = ""): (s
     const index = match.index!;
     if (index > lastIndex) parts.push(input.slice(lastIndex, index));
     
-    // Parse any markdown inside the link text
     const linkContent = parseMarkdown(text, {
       bold: true,
       italic: true,

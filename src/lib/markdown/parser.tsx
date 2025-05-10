@@ -3,11 +3,11 @@ import parseBold from "./bold";
 import parseItalic from "./italic";
 import parseStrikethrough from "./strikethrough";
 import parseHeading from "./heading";
-import parseNewline from "./newline";
 import parseBlockquote from "./blockquote";
 import parseUnorderedList from "./ul";
 import parseOrderedList from "./ol";
 import parseLink from "./link";
+import parseNewline from "./newline";
 
 type ParserOptions = {
   bold?: boolean;
@@ -25,10 +25,10 @@ export default function parseMarkdown(
   input: string,
   options: ParserOptions = {}
 ): ReactNode[] {
-  const lines = input.split('\n');
+  const paragraphs = input.split('\n\n');
   
-  let output: (string | ReactNode)[] = lines.flatMap((line, i) => {
-    let result: (string | ReactNode)[] = [line];
+  const output: (string | ReactNode)[] = paragraphs.flatMap((paragraph, i) => {
+    let result: (string | ReactNode)[] = [paragraph];
     
     if (options.unorderedList !== false) 
       result = result.flatMap(e => parseUnorderedList(e, `ul-${i}`));
@@ -48,14 +48,11 @@ export default function parseMarkdown(
     if (options.link !== false) 
       result = result.flatMap(e => parseLink(e, `link-${i}`));
 
+    if (options.newline !== false) 
+      result = result.flatMap(e => parseNewline(e, `nl-${i}`));
+
     return result;
   });
-
-  if (options.newline !== false && lines.length > 1) {
-    output = output.flatMap((item, i) => 
-      i < output.length - 1 ? [item, <br key={`br-${i}`} />] : item
-    );
-  }
 
   return output.map((item, i) =>
     typeof item === "string" ? (

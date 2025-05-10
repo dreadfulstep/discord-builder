@@ -4,7 +4,7 @@ import parseMarkdown from "./parser";
 export default function parseUnorderedList(input: string | ReactNode, keyPrefix = ""): (string | ReactNode)[] {
   if (typeof input !== "string") return [input];
 
-  const regex = /^([-*+])\s+(.+?)(?=\n[-*+]\s|\n\n|$)/gms;
+  const regex = /^([-*+])\s+(.+?)(?=\n[-*+]\s|\n\n|$)/gm;
   const parts: (string | ReactNode)[] = [];
   let lastIndex = 0;
   let matchIndex = 0;
@@ -12,9 +12,15 @@ export default function parseUnorderedList(input: string | ReactNode, keyPrefix 
   const listItems: ReactNode[] = [];
 
   for (const match of input.matchAll(regex)) {
-    const [full, bullet, content] = match;
+    const [full, , content] = match;
     const index = match.index!;
-    if (index > lastIndex) parts.push(input.slice(lastIndex, index));
+    if (index > lastIndex) {
+      const textBetween = input.slice(lastIndex, index);
+      // Only push non-whitespace content
+      if (textBetween.trim()) {
+        parts.push(textBetween);
+      }
+    }
     
     const parsedContent = parseMarkdown(content.trim(), {
       bold: true,
@@ -29,7 +35,7 @@ export default function parseUnorderedList(input: string | ReactNode, keyPrefix 
     });
     
     listItems.push(
-      <li key={`${keyPrefix}-li-${matchIndex}`} className="list-disc ml-4 pl-1">
+      <li key={`${keyPrefix}-li-${matchIndex}`} className="list-disc ml-4 pl-1 leading-snug">
         {parsedContent}
       </li>
     );
@@ -39,12 +45,17 @@ export default function parseUnorderedList(input: string | ReactNode, keyPrefix 
 
   if (listItems.length > 0) {
     parts.push(
-      <ul key={`${keyPrefix}-ul`} className="my-1">
+      <ul key={`${keyPrefix}-ul`} className="my-0.5">
         {listItems}
       </ul>
     );
-  } else if (lastIndex < input.length) {
-    parts.push(input.slice(lastIndex));
+  }
+
+  if (lastIndex < input.length) {
+    const remainingText = input.slice(lastIndex);
+    if (remainingText.trim()) {
+      parts.push(remainingText);
+    }
   }
 
   return parts;

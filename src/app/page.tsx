@@ -3,7 +3,8 @@ import MediaGallery from "@/components/v2/MediaGallery";
 import Separator from "@/components/v2/Separator";
 import Text from "@/components/v2/Text";
 
-const text = `Our previous components system, while functional, had limitations:
+const text = 
+`Our previous components system, while functional, had limitations:
 - Content, attachments, embeds, and components had to follow fixed positioning rules
 - Visual styling options were limited
 
