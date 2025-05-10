@@ -16,7 +16,6 @@ export default function parseUnorderedList(input: string | ReactNode, keyPrefix 
     const index = match.index!;
     if (index > lastIndex) {
       const textBetween = input.slice(lastIndex, index);
-      // Only push non-whitespace content
       if (textBetween.trim()) {
         parts.push(textBetween);
       }

@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 import parseMarkdown from "./parser";
 
-export default function parseOrderedList(input: string | ReactNode, keyPrefix = ""): (string | ReactNode)[] {
+export default function parseUnorderedList(input: string | ReactNode, keyPrefix = ""): (string | ReactNode)[] {
   if (typeof input !== "string") return [input];
 
-  const regex = /^(\d+)\.\s+(.+?)(?=\n\d+\.\s|\n\n|$)/gm;
+  const regex = /^([-*+])\s+(.+?)(?=\n[-*+]\s|\n\n|$)/gm;
   const parts: (string | ReactNode)[] = [];
   let lastIndex = 0;
   let matchIndex = 0;
@@ -12,9 +12,15 @@ export default function parseOrderedList(input: string | ReactNode, keyPrefix = 
   const listItems: ReactNode[] = [];
 
   for (const match of input.matchAll(regex)) {
-    const [full, num, content] = match;
+    const [full, , content] = match;
     const index = match.index!;
-    if (index > lastIndex) parts.push(input.slice(lastIndex, index));
+    
+    if (index > lastIndex) {
+      const betweenText = input.slice(lastIndex, index);
+      if (betweenText.trim()) {
+        parts.push(betweenText);
+      }
+    }
     
     const parsedContent = parseMarkdown(content.trim(), {
       bold: true,
@@ -29,11 +35,7 @@ export default function parseOrderedList(input: string | ReactNode, keyPrefix = 
     });
     
     listItems.push(
-      <li 
-        key={`${keyPrefix}-li-${matchIndex}`} 
-        value={parseInt(num)}
-        className="list-decimal ml-4 pl-1"
-      >
+      <li key={`${keyPrefix}-li-${matchIndex}`} className="list-disc ml-4 pl-1 my-0.5">
         {parsedContent}
       </li>
     );
@@ -43,12 +45,17 @@ export default function parseOrderedList(input: string | ReactNode, keyPrefix = 
 
   if (listItems.length > 0) {
     parts.push(
-      <ol key={`${keyPrefix}-ol`} className="my-1">
+      <ul key={`${keyPrefix}-ul`} className="my-1.5">
         {listItems}
-      </ol>
+      </ul>
     );
-  } else if (lastIndex < input.length) {
-    parts.push(input.slice(lastIndex));
+  }
+
+  if (lastIndex < input.length) {
+    const remainingText = input.slice(lastIndex);
+    if (remainingText.trim()) {
+      parts.push(remainingText);
+    }
   }
 
   return parts;
