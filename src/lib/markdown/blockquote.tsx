@@ -13,7 +13,7 @@ export default function parseBlockquote(input: string | ReactNode, keyPrefix = "
     const index = match.index!;
     if (index > lastIndex) parts.push(input.slice(lastIndex, index));
     parts.push(
-      <blockquote key={`${keyPrefix}-blockquote-${matchIndex}`} className="border-l-2 border-neutral-600 pl-2 italic">
+      <blockquote key={`${keyPrefix}-blockquote-${matchIndex}`} className="border-l-3 border-neutral-600 pl-2 italic">
         {content}
       </blockquote>
     );
