@@ -1,5 +1,4 @@
 "use client"
-
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Eye } from "lucide-react";
@@ -36,18 +35,22 @@ const MediaItem = ({ media, spoiler, description }: GalleryItem) => {
             height={media.height!}
             sizes="100vw"
             loading="lazy"
-            className={`object-contain transition duration-300 ${
-              showSpoiler ? "blur-3xl" : ""
+            className={`object-contain w-full ${
+              showSpoiler ? "filter blur-sm" : ""
             }`}
           />
           {showSpoiler && (
-            <div 
-              className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/20"
+            <div
+              className="absolute inset-0 cursor-pointer"
               onClick={handleRevealSpoiler}
             >
-              <div className="bg-black/70 rounded-full p-3">
-                <Eye className="text-white" size={24} />
-              </div>
+              <div className={`absolute inset-0 bg-radial from-transparent via-black/10 to-neutral-500/80 backdrop-blur-3xl transition-opacity duration-200 group-hover:opacity-60 opacity-80`}></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-black/90 backdrop-blur-md rounded-lg px-3 py-1.5 shadow-lg border border-border">
+                    <Eye className="text-foreground inline-block mr-2" size={18} />
+                    <span className="font-medium text-foreground">SPOILER</span>
+                  </div>
+                </div>
             </div>
           )}
         </>
@@ -64,8 +67,8 @@ const MediaItem = ({ media, spoiler, description }: GalleryItem) => {
 };
 
 const DynamicAspectImage = ({
-  src, 
-  description, 
+  src,
+  description,
   spoiler,
   onRevealSpoiler
 }: {
@@ -75,7 +78,7 @@ const DynamicAspectImage = ({
   onRevealSpoiler: () => void;
 }) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  
+
   useEffect(() => {
     const img = new window.Image();
     img.src = src;
@@ -96,17 +99,21 @@ const DynamicAspectImage = ({
         height={dimensions.height}
         sizes="100vw"
         loading="lazy"
-        className={`object-contain transition duration-300 ${
-          spoiler ? "blur-3xl" : ""
+        className={`object-contain w-full ${
+          spoiler ? "filter blur-sm" : ""
         }`}
       />
       {spoiler && (
-        <div 
-          className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/20"
+        <div
+          className="absolute inset-0 cursor-pointer group"
           onClick={onRevealSpoiler}
         >
-          <div className="bg-black/70 rounded-full p-3">
-            <Eye className="text-white" size={24} />
+          <div className={`absolute inset-0 bg-radial from-transparent via-black/10 to-neutral-500/80 backdrop-blur-3xl transition-opacity duration-200 group-hover:opacity-60 opacity-80`}></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="bg-black/90 backdrop-blur-md rounded-lg px-3 py-1.5 shadow-lg border border-border">
+              <Eye className="text-foreground inline-block mr-2" size={18} />
+              <span className="font-medium text-foreground">SPOILER</span>
+            </div>
           </div>
         </div>
       )}
