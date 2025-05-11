@@ -51,3 +51,9 @@ interface ParserOptions {
   code?: boolean;
   subtext?: boolean;
 }
+
+type Thumbnail = {
+    media: MediaObject;
+    description?: string;
+    spoiler?: boolean;
+}

@@ -20,3 +20,81 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.discord-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  min-height: 32px;
+  padding: 2px 16px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  cursor: pointer;
+  transition: background-color 0.17s ease, color 0.17s ease;
+  border: none;
+  outline: none;
+}
+
+.discord-button .button-emoji {
+  margin-right: 8px;
+}
+
+.discord-button.primary {
+  background-color: #5865F2;
+  color: white;
+}
+.discord-button.primary:hover {
+  background-color: #4752C4;
+}
+
+.discord-button.secondary {
+  background-color: #4F545C;
+  color: white;
+}
+.discord-button.secondary:hover {
+  background-color: #686D73;
+}
+
+.discord-button.success {
+  background-color: #3BA55D;
+  color: white;
+}
+.discord-button.success:hover {
+  background-color: #2D8048;
+}
+
+.discord-button.danger {
+  background-color: #ED4245;
+  color: white;
+}
+.discord-button.danger:hover {
+  background-color: #C03537;
+}
+
+.discord-button.link {
+  background-color: transparent;
+  color: #00AFF4;
+  text-decoration: none;
+}
+.discord-button.link:hover {
+  text-decoration: underline;
+}
+
+.discord-button.premium {
+  background-color: #EB459E;
+  color: white;
+}
+.discord-button.premium:hover {
+  background-color: #C33884;
+}
+
+.discord-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.discord-button.disabled:hover {
+  background-color: inherit;
+}

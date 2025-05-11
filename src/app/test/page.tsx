@@ -1,6 +1,8 @@
+import Button from "@/components/default/Button";
 import Message from "@/components/Message";
 import Container from "@/components/v2/Container";
 import MediaGallery from "@/components/v2/MediaGallery";
+import Section from "@/components/v2/Section";
 import Separator from "@/components/v2/Separator";
 import Text from "@/components/v2/Text";
 
@@ -28,7 +30,10 @@ export default function Test() {
           />
           <Text>{text}</Text>
           <Separator />
-          <Text>Hey!</Text>
+          <Section>
+            <Text>Hey!</Text>
+            <Button style={1} label="Primary" custom_id="primary_button" />
+          </Section>
         </Container>
       </Message>
     </div>
