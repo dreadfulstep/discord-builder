@@ -169,7 +169,7 @@ export default function parseMarkdown(
   return (
     <ReactMarkdown 
       components={styledComponents}
-      unwrapDisallowed={true} // This helps prevent the <pre> inside <p> issue
+      unwrapDisallowed={true}
     >
       {input}
     </ReactMarkdown>

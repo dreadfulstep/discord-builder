@@ -1,3 +1,4 @@
+import ActionRow from "@/components/default/ActionRow";
 import Button from "@/components/default/Button";
 import Message from "@/components/Message";
 import Container from "@/components/v2/Container";
@@ -34,6 +35,12 @@ export default function Test() {
             <Text>Hey!</Text>
             <Button style={1} label="Primary" custom_id="primary_button" />
           </Section>
+          <ActionRow>
+            <Button style={6} label="Premium" custom_id="primary_button" />
+            <Button style={2} label="Secondary" custom_id="primary_button" />
+            <Button style={4} label="Danger" custom_id="primary_button" />
+            <Button style={5} label="Link" url="https://example.com" custom_id="primary_button" />
+          </ActionRow>
         </Container>
       </Message>
     </div>

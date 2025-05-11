@@ -51,11 +51,12 @@ body {
 }
 
 .discord-button.secondary {
-  background-color: #4F545C;
+  background-color: #27272B;
+  border: 2px solid var(--color-border);
   color: white;
 }
 .discord-button.secondary:hover {
-  background-color: #686D73;
+  background-color: #313136;
 }
 
 .discord-button.success {
@@ -84,11 +85,11 @@ body {
 }
 
 .discord-button.premium {
-  background-color: #EB459E;
+  background-color: #4A6BEB;
   color: white;
 }
 .discord-button.premium:hover {
-  background-color: #C33884;
+  background-color: #3650b6;
 }
 
 .discord-button.disabled {
