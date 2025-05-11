@@ -27,7 +27,7 @@ const Message = ({ avatar, username, bot, children }: MessageProps) => {
             </span>
           )}
         </div>
-        <div className="mt-1">{children}</div>
+        <div className="space-y-2 mt-1">{children}</div>
       </div>
     </div>
   );

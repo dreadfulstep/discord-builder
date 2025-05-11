@@ -17,11 +17,11 @@ export default function parseHeading(input: string | ReactNode, keyPrefix = ""):
     const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
     parts.push(
     <HeadingTag key={`${keyPrefix}-heading-${matchIndex}`} className={`${
-      level === 1 ? 'text-3xl' :
-      level === 2 ? 'text-2xl' :
-      level === 3 ? 'text-xl' :
-      level === 4 ? 'text-lg' :
-      level === 5 ? 'text-md' :
+      level === 1 ? 'text-2xl' :
+      level === 2 ? 'text-xl' :
+      level === 3 ? 'text-lg' :
+      level === 4 ? 'text-md' :
+      level === 5 ? 'text-base' :
       'text-base'
     } font-semibold`}>
       {content}
