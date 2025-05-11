@@ -37,3 +37,17 @@ enum AccessoryType {
     Thumbnail = 11,
     Button = 2,
 }
+
+interface ParserOptions {
+  bold?: boolean;
+  italic?: boolean;
+  strikethrough?: boolean;
+  heading?: boolean;
+  blockquote?: boolean;
+  unorderedList?: boolean;
+  orderedList?: boolean;
+  link?: boolean;
+  newline?: boolean;
+  code?: boolean;
+  subtext?: boolean;
+}

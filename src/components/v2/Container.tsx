@@ -12,7 +12,7 @@ const Container = ({ children, accentColor }: ContainerProps) => {
 
   return (
     <div 
-      className={`bg-neutral p-3 rounded-lg border border-border flex flex-col space-y-2 text-left w-full max-w-2xl relative overflow-hidden ${accentColor ? "border-l-5" : ""}`}
+      className={`bg-neutral p-3 rounded-lg border border-border flex flex-col space-y-1 text-left w-full max-w-2xl relative overflow-hidden ${accentColor ? "border-l-5" : ""}`}
       style={{ borderLeftColor: accentRgb }}
     >
       {children}

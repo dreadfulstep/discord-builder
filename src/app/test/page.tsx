@@ -21,7 +21,7 @@ export default function Test() {
                 media: {
                   url: "https://media.discordapp.net/attachments/697138785317814292/1364347504702914602/docs-header.png?ex=68211221&is=681fc0a1&hm=ee70d7400f2a97a833741294bcbed66ddffb6373a26e2c960a82aae9adab2c17&=&format=webp&quality=lossless",
                 },
-                spoiler: false,
+                spoiler: true,
                 description: "Spoiler image",
               },
             ]}
