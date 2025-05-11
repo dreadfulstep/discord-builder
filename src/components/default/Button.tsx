@@ -14,7 +14,7 @@ type ButtonProps = {
 };
 
 const Button = ({ style, label, emoji, custom_id, sku_id, url, disabled = false }: ButtonProps) => {
-  const baseClasses = "inline-flex items-center justify-center min-w-[60px] min-h-[32px] px-4 py-[2px] rounded-[3px] text-sm font-medium leading-4 cursor-pointer transition-colors duration-150 focus:outline-none";
+  const baseClasses = "inline-flex items-center justify-center min-w-[60px] min-h-[32px] px-4 py-[2px] rounded-[3px] text-sm font-semibold leading-4 cursor-pointer transition-colors duration-150 focus:outline-none";
   
   const getStyleClasses = () => {
     switch (style) {
